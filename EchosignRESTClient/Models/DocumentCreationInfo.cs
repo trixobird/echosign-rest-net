@@ -31,11 +31,10 @@ namespace EchosignRESTClient.Models
         public string signatureType { get; set; }
 
         /// <summary>
-        /// ['SENDER_SIGNATURE_NOT_REQUIRED' or 'SENDER_SIGNS_LAST' or 'SENDER_SIGNS_FIRST' or 'SEQUENTIAL' or 'PARALLEL' or 'SENDER_SIGNS_ONLY']: Selects the 
-        /// workflow you would like to use - whether the sender needs to sign only, before the recipient, after the recipient, or not at all.
-        /// Note: leave unspecified for hybrid routing
+        /// A publicly accessible url to which Adobe Sign will do an HTTP GET operation every time there is a new agreement event.
+        /// Your GET url will receive the following parameters: documentKey={AGREEMENT_ID}&status={STATUS}&eventType={EVENT_TYPE}
         /// </summary>
-        public string signatureFlow { get; set; }
+        public string callbackInfo { get; set; }
 
         /// <summary>
         /// A list of one or more email addresses that you want to copy on this transaction. 
@@ -46,24 +45,31 @@ namespace EchosignRESTClient.Models
         public List<string> ccs { get; set; }
 
         /// <summary>
-        /// A publicly accessible url to which Adobe Sign will do an HTTP GET operation every time there is a new agreement event.
-        /// Your GET url will receive the following parameters: documentKey={AGREEMENT_ID}&status={STATUS}&eventType={EVENT_TYPE}
-        /// </summary>
-        public string callbackInfo { get; set; }
-
-        /// <summary>
         /// The number of days that remain before the document expires. You cannot sign the document after it expires
         /// </summary>
         public int daysUntilSigningDeadline { get; set; }
+
+        /// <summary>
+        /// (optional): Information of form fields of an agreement. PDF_SIGNATURE inputType field is currently not supported
+        /// </summary>
+        public List<RequestFormField> formFields { get; set; }
+
+        /// <summary>
+        /// An optional message to the recipients, describing what is being sent or why their signature is required
+        /// </summary>
+        public string message { get; set; }
 
         /// <summary>
         ///  ['DAILY_UNTIL_SIGNED' or 'WEEKLY_UNTIL_SIGNED']: Optional parameter that sets how often you want 
         ///  to send reminders to the recipients. 
         /// </summary>
         public string reminderFrequency { get; set; }
+        
         /// <summary>
-        /// An optional message to the recipients, describing what is being sent or why their signature is required
+        /// ['SENDER_SIGNATURE_NOT_REQUIRED' or 'SENDER_SIGNS_LAST' or 'SENDER_SIGNS_FIRST' or 'SEQUENTIAL' or 'PARALLEL' or 'SENDER_SIGNS_ONLY']: Selects the 
+        /// workflow you would like to use - whether the sender needs to sign only, before the recipient, after the recipient, or not at all.
+        /// Note: leave unspecified for hybrid routing
         /// </summary>
-        public string message { get; set; }
+        public string signatureFlow { get; set; }
     }
 }
