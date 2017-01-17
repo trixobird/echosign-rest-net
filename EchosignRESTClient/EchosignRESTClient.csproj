@@ -59,6 +59,7 @@
     <Compile Include="Models\CounterSignerSetInfo.cs" />
     <Compile Include="Models\FormFieldCondition.cs" />
     <Compile Include="Models\FormFieldLocation.cs" />
+    <Compile Include="Models\UserWidget.cs" />
     <Compile Include="Models\RequestFormField.cs" />
     <Compile Include="Models\URLFileInfo.cs" />
     <Compile Include="Models\UserAgreements.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Models\RefreshTokenResponse.cs" />
     <Compile Include="Models\TokenResponse.cs" />
     <Compile Include="Models\TransientDocument.cs" />
+    <Compile Include="Models\UserWidgets.cs" />
     <Compile Include="Models\WidgetCreationInfo.cs" />
     <Compile Include="Models\WidgetCreationResponse.cs" />
     <Compile Include="Models\WidgetMinimalRequest.cs" />

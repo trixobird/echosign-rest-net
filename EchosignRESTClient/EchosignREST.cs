@@ -426,6 +426,29 @@ namespace EchosignRESTClient
         }
 
         /// <summary>
+        /// Retrieves widgets for the user
+        /// </summary>
+        /// <returns>UserWidgets</returns>
+        public async Task<UserWidgets> GetWidgets()
+        {
+            HttpResponseMessage result = await client.GetAsync(apiEndpointVer + "/widgets");
+            if (result.IsSuccessStatusCode)
+            {
+                string response = await result.Content.ReadAsStringAsync();
+                UserWidgets widgets = JsonConvert.DeserializeObject<UserWidgets>(response);
+
+                return widgets;
+            }
+            else
+            {
+                string response = await result.Content.ReadAsStringAsync();
+                HandleError(result.StatusCode, response, false);
+
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Personalize the widget to a signable document for a specific known user
         /// </summary>
         /// <param name="widgetId">The widget identifier, as returned by the widget creation API or retrieved from the API to fetch widgets</param>
