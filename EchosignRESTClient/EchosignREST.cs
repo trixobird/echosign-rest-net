@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using System.Net.Http.Headers;
 
 namespace EchosignRESTClient
 {
@@ -438,6 +439,24 @@ namespace EchosignRESTClient
                 UserWidgets widgets = JsonConvert.DeserializeObject<UserWidgets>(response);
 
                 return widgets;
+            }
+            else
+            {
+                string response = await result.Content.ReadAsStringAsync();
+                HandleError(result.StatusCode, response, false);
+
+                return null;
+            }
+        }
+
+        public async Task<Stream> AuditTrail(string widgetId)
+        {
+            HttpResponseMessage result = await client.GetAsync(apiEndpointVer + "/widgets/" + widgetId + "/auditTrail");
+            if (result.IsSuccessStatusCode)
+            {
+                Stream response = await result.Content.ReadAsStreamAsync();
+
+                return response;
             }
             else
             {
